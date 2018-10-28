@@ -20,6 +20,12 @@
       <module name="ru.itbasis.gradle.plugins_kotlin-assistant-config-project-plugin_test" target="1.8" />
       <module name="sample-common_main" target="1.8" />
       <module name="sample-common_test" target="1.8" />
+      <module name="sample-jvm-junit4_main" target="1.8" />
+      <module name="sample-jvm-junit4_test" target="1.8" />
+      <module name="sample-jvm-junit5_main" target="1.8" />
+      <module name="sample-jvm-junit5_test" target="1.8" />
+      <module name="sample-jvm-testng_main" target="1.8" />
+      <module name="sample-jvm-testng_test" target="1.8" />
       <module name="sample-jvm_main" target="1.8" />
       <module name="sample-jvm_test" target="1.8" />
     </bytecodeTargetLevel>

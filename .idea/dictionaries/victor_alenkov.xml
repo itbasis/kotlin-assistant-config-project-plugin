@@ -1,8 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="victor.alenkov">
     <words>
+      <w>arturbosch</w>
+      <w>coroutines</w>
+      <w>detekt</w>
+      <w>diffplug</w>
       <w>itbasis</w>
       <w>kotlintest</w>
+      <w>kotlinx</w>
+      <w>ktlint</w>
+      <w>mockk</w>
+      <w>shyiko</w>
     </words>
   </dictionary>
 </component>

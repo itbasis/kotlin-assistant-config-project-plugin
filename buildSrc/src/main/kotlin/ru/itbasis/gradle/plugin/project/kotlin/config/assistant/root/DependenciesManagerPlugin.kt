@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package ru.itbasis.gradle.plugin.project.kotlin.config.assistant.root
 
 import org.gradle.api.Plugin
@@ -9,7 +11,10 @@ import ru.itbasis.gradle.plugin.project.kotlin.config.assistant.kotlinVersion
 
 class DependenciesManagerPlugin : Plugin<Project> {
   override fun apply(project: Project) {
+    val logger = project.logger
+
     val kotlinVersion: String = project.extra.kotlinVersion()
+    logger.info("kotlinVersion: $kotlinVersion")
 
     var useGoogleRepo = false
 
@@ -19,8 +24,7 @@ class DependenciesManagerPlugin : Plugin<Project> {
           failOnVersionConflict()
 
           eachDependency {
-            useGoogleRepo = useGoogleRepo ||
-              (requested.group.startsWith("com.android") || requested.group.startsWith("android"))
+            useGoogleRepo = useGoogleRepo || (requested.group.startsWith("com.android") || requested.group.startsWith("android"))
 
             when (requested.group) {
               "org.jetbrains.kotlin" -> {
@@ -39,14 +43,9 @@ class DependenciesManagerPlugin : Plugin<Project> {
 
       repositories {
         jcenter()
-        mavenCentral()
 
         if (useGoogleRepo) {
           add(google())
-        }
-
-        if (kotlinVersion.startsWith("1.3")) {
-          add(maven(url = "https://dl.bintray.com/kotlin/kotlin-eap/"))
         }
       }
     }

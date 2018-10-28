@@ -5,15 +5,22 @@ import org.gradle.kotlin.dsl.embeddedKotlinVersion
 
 fun ExtraPropertiesExtension.getOrDefault(
   propertyName: String,
-  default: (() -> Any?)? = null
-                                         ): Any? {
+  default: (() -> String?) = { "" }
+                                         ): String {
   if (has(propertyName)) {
-    return get(propertyName)
+    return get(propertyName).toString()
   }
 
-  return default?.invoke()
+  return default.invoke().toString()
+}
+
+fun ExtraPropertiesExtension.getOrDefaultVersion(
+  propertyName: String,
+  default: (() -> String?) = { LATEST_INTEGRATION }
+                                                ): String {
+  return getOrDefault(propertyName.substringBeforeLast(".version") + ".version", default)
 }
 
 fun ExtraPropertiesExtension.kotlinVersion(): String {
-  return getOrDefault("kotlin.version") { embeddedKotlinVersion }.toString()
+  return getOrDefaultVersion("kotlin") { embeddedKotlinVersion }
 }

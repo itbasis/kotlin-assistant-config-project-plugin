@@ -4,6 +4,6 @@ rootProject.name = "kotlin-assistant-config-project-plugin"
 
 apply<KotlinAssistantConfigProjectPlugin>()
 
-arrayOf("common", "jvm").forEach {
+arrayOf("common", "jvm-junit4", "jvm-junit5").forEach {
   include(":samples:sample-$it")
 }
