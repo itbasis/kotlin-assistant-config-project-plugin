@@ -10,12 +10,20 @@
       <module name="kotlin-project-plugin_gradle_plugins_test" target="1.8" />
       <module name="kotlin-project-plugin_main" target="1.8" />
       <module name="kotlin-project-plugin_test" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.kotlin-assistant-config-project-plugin.main" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.kotlin-assistant-config-project-plugin.test" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_buildSrc_main" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_buildSrc_test" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_kotlin-assistant-config-project-plugin_main" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_kotlin-assistant-config-project-plugin_test" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_kotlin-project-plugin_main" target="1.8" />
       <module name="ru.itbasis.gradle.plugins.kotlin-project_kotlin-project-plugin_test" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-common.main" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-common.test" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-jvm-junit4.main" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-jvm-junit4.test" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-jvm-junit5.main" target="1.8" />
+      <module name="ru.itbasis.gradle.plugins.sample-jvm-junit5.test" target="1.8" />
       <module name="ru.itbasis.gradle.plugins_kotlin-assistant-config-project-plugin_main" target="1.8" />
       <module name="ru.itbasis.gradle.plugins_kotlin-assistant-config-project-plugin_test" target="1.8" />
       <module name="sample-common_main" target="1.8" />
