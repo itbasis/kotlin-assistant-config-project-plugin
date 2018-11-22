@@ -3,6 +3,7 @@
 package ru.itbasis.gradle.plugin.project.kotlin.config.assistant.root
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
@@ -14,6 +15,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findPlugin
 import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.plugin
 import org.gradle.kotlin.dsl.repositories
@@ -59,11 +61,23 @@ class KotlinRootProjectPlugin : Plugin<Project> {
           plugin<AutoConfigureKotlinDependenciesPlugin>()
         }
 
+        configureShadowPlugin(this)
         afterEvaluate {
           tasks.findByName("check")?.dependsOn("detekt")
 
-          if (plugins.hasPlugin(JavaPlugin::class.java)) {
-            plugins.apply(ShadowPlugin::class.java)
+        }
+      }
+    }
+  }
+
+  private fun configureShadowPlugin(project: Project) {
+    with(project) {
+      afterEvaluate {
+        if (plugins.hasPlugin(JavaPlugin::class.java)) {
+          apply<ShadowPlugin>()
+          tasks.getting(ShadowJar::class) {
+            minimize()
+            isZip64 = true
           }
         }
       }
