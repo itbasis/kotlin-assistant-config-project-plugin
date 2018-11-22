@@ -44,6 +44,7 @@ dependencies {
 
   "implementation"("com.diffplug.spotless:spotless-plugin-gradle:+")
   "implementation"("gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:+")
+  "implementation"("com.github.jengelman.gradle.plugins:shadow:+")
 }
 
 val isSnapshot = extra.get("snapshot")!!.toString().toBoolean()

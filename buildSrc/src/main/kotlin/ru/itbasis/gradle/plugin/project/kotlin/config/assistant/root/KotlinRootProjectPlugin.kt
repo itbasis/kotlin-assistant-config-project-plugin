@@ -2,10 +2,13 @@
 
 package ru.itbasis.gradle.plugin.project.kotlin.config.assistant.root
 
+import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPlugin
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.buildscript
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.extra
@@ -31,6 +34,7 @@ class KotlinRootProjectPlugin : Plugin<Project> {
 
       val kotlinVersion: String = rootProject.extra.kotlinVersion()
       val detektVersion: String = rootProject.extra.getOrDefaultVersion("detekt")
+      val shadowJarVersion: String = rootProject.extra.getOrDefaultVersion("shadowJar")
 
       buildscript {
         repositories {
@@ -40,6 +44,7 @@ class KotlinRootProjectPlugin : Plugin<Project> {
         dependencies {
           classpath(kotlin("gradle-plugin", kotlinVersion))
           classpath("gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion")
+          classpath("com.github.jengelman.gradle.plugins:shadow:$shadowJarVersion")
         }
       }
 
@@ -56,6 +61,10 @@ class KotlinRootProjectPlugin : Plugin<Project> {
 
         afterEvaluate {
           tasks.findByName("check")?.dependsOn("detekt")
+
+          if (plugins.hasPlugin(JavaPlugin::class.java)) {
+            plugins.apply(ShadowPlugin::class.java)
+          }
         }
       }
     }
@@ -63,7 +72,8 @@ class KotlinRootProjectPlugin : Plugin<Project> {
 
   private fun configureIntellijIdea(project: Project) {
     project.allprojects {
-      plugins.findPlugin(IdeaPlugin::class) ?: plugins.apply(IdeaPlugin::class.java)
+      plugins.findPlugin(IdeaPlugin::class)
+      ?: plugins.apply(IdeaPlugin::class.java)
 
       configure<IdeaModel> {
         module {
