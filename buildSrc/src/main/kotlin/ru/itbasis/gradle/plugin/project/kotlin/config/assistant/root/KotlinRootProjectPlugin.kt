@@ -10,6 +10,7 @@ import org.gradle.kotlin.dsl.buildscript
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findPlugin
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.plugin
 import org.gradle.kotlin.dsl.repositories
@@ -51,6 +52,10 @@ class KotlinRootProjectPlugin : Plugin<Project> {
           // TODO https://github.com/shyiko/ktlint/pull/294
           // plugin<AutoConfigureSpotlessPlugin>()
           plugin<AutoConfigureKotlinDependenciesPlugin>()
+        }
+
+        afterEvaluate {
+          tasks.findByName("check")?.dependsOn("detekt")
         }
       }
     }
